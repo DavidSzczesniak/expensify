@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 import { editExpense, removeExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
-const EditExpensePage = ({ expense, dispatch, history, match }) => (
+export const EditExpensePage = ({ expense, history, editExpense, removeExpense }) => (
     <div>
         <ExpenseForm
-            onSubmit={(expense) => {
-                dispatch(editExpense(match.params.id, expense));
+            onSubmit={(editedExpense) => {
+                editExpense(expense.id, editedExpense);
                 history.push('/');
             }}
             expense={expense}
         />
         <button
             onClick={() => {
-                dispatch(removeExpense({ id: match.params.id }));
+                removeExpense({ id: expense.id });
                 history.push('/');
             }}>
             Remove
@@ -22,10 +22,13 @@ const EditExpensePage = ({ expense, dispatch, history, match }) => (
     </div>
 );
 
-const mapStateToProps = (state, props) => {
-    return {
-        expense: state.expenses.find((expense) => expense.id === props.match.params.id),
-    };
-};
+const mapStateToProps = (state, props) => ({
+    expense: state.expenses.find((expense) => expense.id === props.match.params.id),
+});
 
-export default connect(mapStateToProps)(EditExpensePage);
+const mapDispatchToProps = (dispatch) => ({
+    editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+    removeExpense: (data) => dispatch(removeExpense(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
