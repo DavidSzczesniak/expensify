@@ -9,9 +9,9 @@ exports[`should render component correctly 1`] = `
     activeClassName="active"
     ariaCurrent="true"
     exact={true}
-    to="/"
+    to="/dashboard"
   >
-    Home
+    Dashboard
   </NavLink>
   <NavLink
     activeClassName="active"
@@ -27,5 +27,10 @@ exports[`should render component correctly 1`] = `
   >
     Help
   </NavLink>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
 </div>
 `;
