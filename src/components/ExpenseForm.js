@@ -56,38 +56,41 @@ export default class ExpenseForm extends React.Component {
         };
 
         return (
-            <div>
-                {error && <p>{error}</p>}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        autoFocus
-                        value={description}
-                        onChange={(e) => handleDescriptionChange(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Amount"
-                        value={amount}
-                        onChange={(e) => handleAmountChange(e.target.value)}
-                    />
-                    <SingleDatePicker
-                        date={createdAt}
-                        onDateChange={handleDateChange}
-                        focused={calendarFocused}
-                        onFocusChange={handleFocusChange}
-                        numberOfMonths={1}
-                        isOutsideRange={() => false}
-                    />
-                    <textarea
-                        placeholder="Add a note (optional)"
-                        value={note}
-                        onChange={(e) => handleNoteChange(e.target.value)}
-                    />
-                    <button>Add Expense</button>
-                </form>
-            </div>
+            <form className="form" onSubmit={handleSubmit}>
+                {error && <p className="form__error">{error}</p>}
+                <input
+                    className="text-input"
+                    type="text"
+                    placeholder="Description"
+                    autoFocus
+                    value={description}
+                    onChange={(e) => handleDescriptionChange(e.target.value)}
+                />
+                <input
+                    className="text-input"
+                    type="text"
+                    placeholder="Amount"
+                    value={amount}
+                    onChange={(e) => handleAmountChange(e.target.value)}
+                />
+                <SingleDatePicker
+                    date={createdAt}
+                    onDateChange={handleDateChange}
+                    focused={calendarFocused}
+                    onFocusChange={handleFocusChange}
+                    numberOfMonths={1}
+                    isOutsideRange={() => false}
+                />
+                <textarea
+                    className="textarea"
+                    placeholder="Add a note (optional)"
+                    value={note}
+                    onChange={(e) => handleNoteChange(e.target.value)}
+                />
+                <div>
+                    <button className="button">Save Expense</button>
+                </div>
+            </form>
         );
     }
 }

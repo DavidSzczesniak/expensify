@@ -5,20 +5,28 @@ import ExpenseForm from './ExpenseForm';
 
 export const EditExpensePage = ({ expense, history, startEditExpense, startRemoveExpense }) => (
     <div>
-        <ExpenseForm
-            onSubmit={(editedExpense) => {
-                startEditExpense(expense.id, editedExpense);
-                history.push('/');
-            }}
-            expense={expense}
-        />
-        <button
-            onClick={() => {
-                startRemoveExpense({ id: expense.id });
-                history.push('/');
-            }}>
-            Remove
-        </button>
+        <div className="page-header">
+            <div className="content-container">
+                <h1 className="page-header__title">Edit Expense</h1>
+            </div>
+        </div>
+        <div className="content-container">
+            <ExpenseForm
+                onSubmit={(editedExpense) => {
+                    startEditExpense(expense.id, editedExpense);
+                    history.push('/');
+                }}
+                expense={expense}
+            />
+            <button
+                className="button button--secondary"
+                onClick={() => {
+                    startRemoveExpense({ id: expense.id });
+                    history.push('/');
+                }}>
+                Remove Expense
+            </button>
+        </div>
     </div>
 );
 
